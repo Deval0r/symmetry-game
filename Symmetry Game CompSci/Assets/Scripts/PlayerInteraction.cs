@@ -6,10 +6,14 @@ public class PlayerInteraction : MonoBehaviour
     public float interactionRadius = 3f;
     private bool isInCar = false;
     private CarMovement carMovement;
+    private Collider2D playerCollider;
+    private SpriteRenderer playerSprite;
 
     void Start()
     {
         carMovement = car.GetComponent<CarMovement>();
+        playerCollider = GetComponent<Collider2D>();
+        playerSprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -28,8 +32,8 @@ public class PlayerInteraction : MonoBehaviour
 
         if (isInCar)
         {
-            // Set the player's local position to the car's position
-            transform.position = car.transform.TransformPoint(Vector3.zero);
+            // Update player's local position relative to the car
+            transform.position = car.transform.position + (Vector3)(car.transform.position - transform.position).normalized * 0.5f;
         }
     }
 
@@ -38,7 +42,8 @@ public class PlayerInteraction : MonoBehaviour
         isInCar = true;
         carMovement.SetPlayerInside(true);
         GetComponent<Rigidbody2D>().isKinematic = true; // Disable Rigidbody2D physics
-        transform.SetParent(car.transform); // Parent player to car
+        playerCollider.enabled = false; // Disable player's collision
+        playerSprite.enabled = false; // Hide player's sprite
     }
 
     void ExitCar()
@@ -46,6 +51,7 @@ public class PlayerInteraction : MonoBehaviour
         isInCar = false;
         carMovement.SetPlayerInside(false);
         GetComponent<Rigidbody2D>().isKinematic = false; // Enable Rigidbody2D physics
-        transform.SetParent(null); // Unparent player from car
+        playerCollider.enabled = true; // Enable player's collision
+        playerSprite.enabled = true; // Show player's sprite
     }
 }

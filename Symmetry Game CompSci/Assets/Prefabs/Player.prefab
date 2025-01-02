@@ -117,7 +117,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1535037439448764354
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -191,3 +191,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   car: {fileID: 4247966719337679444, guid: 0b7cb4011f6ea0d4a8e100cf244cb4e4, type: 3}
+  interactionRadius: 3

@@ -365,6 +365,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car
       objectReference: {fileID: 0}
+    - target: {fileID: 5853296088181398722, guid: 0b7cb4011f6ea0d4a8e100cf244cb4e4, type: 3}
+      propertyPath: m_AngularDamping
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8260833373614149185, guid: 0b7cb4011f6ea0d4a8e100cf244cb4e4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.17

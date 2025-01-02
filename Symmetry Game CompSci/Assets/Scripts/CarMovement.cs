@@ -4,7 +4,7 @@ public class CarMovement : MonoBehaviour
 {
     public float moveSpeed = 10f;
     public float turnSpeed = 50f;
-    private bool isPlayerInside = false;
+    public bool isPlayerInside = false;
 
     void Update()
     {

@@ -13,8 +13,18 @@ public class CarMovement : MonoBehaviour
             float moveDirection = Input.GetAxis("Vertical");
             float turnDirection = Input.GetAxis("Horizontal");
 
-            transform.Translate(Vector3.up * moveDirection * moveSpeed * Time.deltaTime);
-            transform.Rotate(Vector3.forward, -turnDirection * turnSpeed * Time.deltaTime);
+            // Adjust move speed based on direction
+            float currentMoveSpeed = moveDirection < 0 ? moveSpeed * 0.75f : moveSpeed;
+
+            if (moveDirection != 0) // Only rotate when there is forward or backward movement
+            {
+                transform.Translate(Vector3.up * moveDirection * currentMoveSpeed * Time.deltaTime);
+                transform.Rotate(Vector3.forward, -turnDirection * turnSpeed * Time.deltaTime);
+            }
+            else
+            {
+                transform.Translate(Vector3.up * moveDirection * currentMoveSpeed * Time.deltaTime); // Move forward/backward even when not rotating
+            }
         }
     }
 

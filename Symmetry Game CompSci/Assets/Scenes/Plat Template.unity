@@ -226,8 +226,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1588060592}
-  smoothSpeed: 0.002
-  offset: {x: 0, y: 0, z: 0}
+  smoothSpeed: 0.003
+  offset: {x: -6, y: 0, z: 0}
+  offsetMultiplier: 1
+  zoomOutFactor: 0.5
+  maxZoomOut: 10
+  minZoomIn: 5
 --- !u!114 &520921146
 MonoBehaviour:
   m_ObjectHideFlags: 0

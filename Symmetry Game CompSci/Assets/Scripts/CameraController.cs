@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-
     public TopMovement topMovementScript;
     public CarMovement carMovementScript;
+    public float smoothSpeed = 0.125f; // Smoothness of the camera movement
+    public Vector3 offset; // Offset between the camera and the player/car
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,17 +15,26 @@ public class CameraController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
+        Vector3 targetPosition;
+
         if (carMovementScript.isPlayerInside)
         {
-           Vector3 targetPosition = new Vector3(carMovementScript.transform.position.x, carMovementScript.transform.position.y, transform.position.z);
-            transform.position = Vector3.Lerp(transform.position, targetPosition, 5 * Time.deltaTime);
+            targetPosition = carMovementScript.transform.position + offset;
         }
         else
         {
-            Vector3 targetPosition = new Vector3(topMovementScript.transform.position.x, topMovementScript.transform.position.y, transform.position.z);
-            transform.position = Vector3.Lerp(transform.position, targetPosition, 5 * Time.deltaTime);
+            targetPosition = topMovementScript.transform.position + offset;
         }
+
+        // Smoothly move the camera towards the target position
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, smoothSpeed);
+
+        // Ensure the camera's z-position stays at -10
+        smoothedPosition.z = -10;
+
+        // Set the camera's position to the smoothed position
+        transform.position = smoothedPosition;
     }
 }

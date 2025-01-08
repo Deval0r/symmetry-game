@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool isWall;
+    private float wallJumpCooldown = 0.1f;
+    private float lastWallJumpTime;
 
     void Start()
     {
@@ -34,9 +36,12 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             Debug.Log("Jumping");
         }
-        if (Input.GetKeyDown(KeyCode.W) && isWall)
+
+        // Wall jump with continuous activation
+        if (Input.GetKey(KeyCode.W) && isWall && Time.time > lastWallJumpTime + wallJumpCooldown)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            lastWallJumpTime = Time.time;
             Debug.Log("Jumping off wall");
         }
 
@@ -53,11 +58,11 @@ public class PlayerController : MonoBehaviour
 
     private bool CheckGrounded()
     {
-        // Cast three raycasts: left, right, and center
+        // Cast three raycasts: left, right, and center from the foot level, slightly lower again
         Vector2 position = transform.position;
-        Vector2 leftRayOrigin = position + Vector2.left * 0.7f;
-        Vector2 rightRayOrigin = position + Vector2.right * 0.7f;
-        Vector2 centerRayOrigin = position;
+        Vector2 leftRayOrigin = position + Vector2.left * 0.7f + Vector2.down * 0.6f;
+        Vector2 rightRayOrigin = position + Vector2.right * 0.7f + Vector2.down * 0.6f;
+        Vector2 centerRayOrigin = position + Vector2.down * 0.6f;
 
         bool isLeftGrounded = Physics2D.Raycast(leftRayOrigin, Vector2.down, 0.75f, LayerMask.GetMask("Ground"));
         bool isRightGrounded = Physics2D.Raycast(rightRayOrigin, Vector2.down, 0.75f, LayerMask.GetMask("Ground"));
@@ -72,23 +77,29 @@ public class PlayerController : MonoBehaviour
 
     private bool WallCheck()
     {
+        // Cast two raycasts from the foot level, slightly lower again
         Vector2 position = transform.position;
-        Vector2 leftRayOrigin = position + Vector2.left * 0.7f;
-        Vector2 rightRayOrigin = position + Vector2.right * 0.7f;
+        Vector2 leftRayOrigin = position + Vector2.left * 0.7f + Vector2.down * 0.7f;
+        Vector2 rightRayOrigin = position + Vector2.right * 0.7f + Vector2.down * 0.7f;
 
-        bool isLeftWall = Physics2D.Raycast(leftRayOrigin, Vector2.left, 0.75f, LayerMask.GetMask("Wall"));
-        bool isRightWall = Physics2D.Raycast(rightRayOrigin, Vector2.right, 0.75f, LayerMask.GetMask("Wall"));
+        bool isLeftWall = Physics2D.Raycast(leftRayOrigin, Vector2.left, 0.75f, LayerMask.GetMask("Ground"));
+        bool isRightWall = Physics2D.Raycast(rightRayOrigin, Vector2.right, 0.75f, LayerMask.GetMask("Ground"));
 
         Debug.DrawRay(leftRayOrigin, Vector2.left * 0.75f, Color.red);
         Debug.DrawRay(rightRayOrigin, Vector2.right * 0.75f, Color.red);
 
         return isLeftWall || isRightWall;
     }
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * 0.75f); // Ground check center
-        Gizmos.DrawLine(transform.position + Vector3.left * 0.7f, transform.position + Vector3.left * 0.7f + Vector3.down * 0.75f); // Ground check left
-        Gizmos.DrawLine(transform.position + Vector3.right * 0.7f, transform.position + Vector3.right * 0.7f + Vector3.down * 0.75f); // Ground check right
+        Gizmos.DrawLine(transform.position + Vector3.down * 0.6f, transform.position + Vector3.down * 1.35f); // Ground check center from foot level, slightly lower
+        Gizmos.DrawLine(transform.position + Vector3.left * 0.7f + Vector3.down * 0.6f, transform.position + Vector3.left * 0.7f + Vector3.down * 1.35f); // Ground check left from foot level, slightly lower
+        Gizmos.DrawLine(transform.position + Vector3.right * 0.7f + Vector3.down * 0.6f, transform.position + Vector3.right * 0.7f + Vector3.down * 1.35f); // Ground check right from foot level, slightly lower
+
+        // Sideways wall check rays from foot level, slightly lower
+        Gizmos.DrawLine(transform.position + Vector3.left * 0.7f + Vector3.down * 0.7f, transform.position + Vector3.left * 1.45f + Vector3.down * 0.6f); // Wall check left from foot level, slightly lower
+        Gizmos.DrawLine(transform.position + Vector3.right * 0.7f + Vector3.down * 0.7f, transform.position + Vector3.right * 1.45f + Vector3.down * 0.6f); // Wall check right from foot level, slightly lower
     }
 }

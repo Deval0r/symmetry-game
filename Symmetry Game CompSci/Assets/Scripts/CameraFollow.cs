@@ -9,14 +9,14 @@ public class CameraFollow : MonoBehaviour
     public float zoomOutFactor = 0.1f; // Factor by which the camera zooms out based on speed
     public float maxZoomOut = 10f; // Maximum orthographic size for the camera
     public float minZoomIn = 5f; // Minimum orthographic size for the camera
-    public Vector3 setleft;
+
 
     private Vector3 previousPlayerPosition;
 
     void Start()
     {
         previousPlayerPosition = player.position;
-        setleft = new Vector3(-1, 0, -10);
+        
     }
 
     void LateUpdate()
@@ -48,7 +48,7 @@ public class CameraFollow : MonoBehaviour
         smoothedPosition.z = -10;
 
         // Set the camera's position to the smoothed position
-        transform.position = smoothedPosition + setleft;
+        transform.position = smoothedPosition;
         
 
         // Calculate player speed

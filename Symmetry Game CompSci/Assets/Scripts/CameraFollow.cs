@@ -9,6 +9,7 @@ public class CameraFollow : MonoBehaviour
     public float zoomOutFactor = 0.1f; // Factor by which the camera zooms out based on speed
     public float maxZoomOut = 10f; // Maximum orthographic size for the camera
     public float minZoomIn = 5f; // Minimum orthographic size for the camera
+    public Vector3 setleft;
 
     private Vector3 previousPlayerPosition;
 
@@ -36,7 +37,8 @@ public class CameraFollow : MonoBehaviour
         }
 
         // Target position based on the player's position and offset
-        Vector3 desiredPosition = player.position + offset;
+        setleft  = new Vector3(-480, 0, 0);
+        Vector3 desiredPosition = player.position + offset + setleft;
 
         // Smoothly move the camera towards the target position
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);

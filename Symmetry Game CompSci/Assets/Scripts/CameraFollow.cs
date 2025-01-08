@@ -16,6 +16,7 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         previousPlayerPosition = player.position;
+        setleft = new Vector3(-1, 0, -10);
     }
 
     void LateUpdate()
@@ -37,8 +38,8 @@ public class CameraFollow : MonoBehaviour
         }
 
         // Target position based on the player's position and offset
-        setleft  = new Vector3(-480, 0, 0);
-        Vector3 desiredPosition = player.position + offset + setleft;
+        
+        Vector3 desiredPosition = player.position + offset;
 
         // Smoothly move the camera towards the target position
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
@@ -47,7 +48,8 @@ public class CameraFollow : MonoBehaviour
         smoothedPosition.z = -10;
 
         // Set the camera's position to the smoothed position
-        transform.position = smoothedPosition;
+        transform.position = smoothedPosition + setleft;
+        
 
         // Calculate player speed
         float playerSpeed = playerMovement.magnitude / Time.deltaTime;

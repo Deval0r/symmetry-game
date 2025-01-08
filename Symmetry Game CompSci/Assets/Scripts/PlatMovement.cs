@@ -21,8 +21,8 @@ public class PlayerController : MonoBehaviour
         float moveInput = Input.GetAxisRaw("Horizontal");
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
 
-        // Check if grounded
-        isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 2f, LayerMask.GetMask("Ground"));
+        // Ground check using three raycasts for left, center, and right
+        isGrounded = CheckGrounded();
         Debug.Log("Is Grounded: " + isGrounded);
 
         // Jump
@@ -43,9 +43,30 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private bool CheckGrounded()
+    {
+        // Cast three raycasts: left, right, and center
+        Vector2 position = transform.position;
+        Vector2 leftRayOrigin = position + Vector2.left * 0.7f;
+        Vector2 rightRayOrigin = position + Vector2.right * 0.7f;
+        Vector2 centerRayOrigin = position;
+
+        bool isLeftGrounded = Physics2D.Raycast(leftRayOrigin, Vector2.down, 0.75f, LayerMask.GetMask("Ground"));
+        bool isRightGrounded = Physics2D.Raycast(rightRayOrigin, Vector2.down, 0.75f, LayerMask.GetMask("Ground"));
+        bool isCenterGrounded = Physics2D.Raycast(centerRayOrigin, Vector2.down, 0.75f, LayerMask.GetMask("Ground"));
+
+        Debug.DrawRay(leftRayOrigin, Vector2.down * 0.75f, Color.red);
+        Debug.DrawRay(rightRayOrigin, Vector2.down * 0.75f, Color.red);
+        Debug.DrawRay(centerRayOrigin, Vector2.down * 0.75f, Color.red);
+
+        return isLeftGrounded || isRightGrounded || isCenterGrounded;
+    }
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * 0.2f);
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * 0.75f); // Ground check center
+        Gizmos.DrawLine(transform.position + Vector3.left * 0.7f, transform.position + Vector3.left * 0.7f + Vector3.down * 0.75f); // Ground check left
+        Gizmos.DrawLine(transform.position + Vector3.right * 0.7f, transform.position + Vector3.right * 0.7f + Vector3.down * 0.75f); // Ground check right
     }
 }

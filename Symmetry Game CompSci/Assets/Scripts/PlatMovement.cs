@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool isGrounded;
+    private bool isWall;
 
     void Start()
     {
@@ -23,13 +24,20 @@ public class PlayerController : MonoBehaviour
 
         // Ground check using three raycasts for left, center, and right
         isGrounded = CheckGrounded();
-        Debug.Log("Is Grounded: " + isGrounded);
+        isWall = WallCheck();
+
+        Debug.Log("Is wall: " + isWall);
 
         // Jump
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             Debug.Log("Jumping");
+        }
+        if (Input.GetKeyDown(KeyCode.W) && isWall)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            Debug.Log("Jumping off wall");
         }
 
         // Fall faster
@@ -62,6 +70,20 @@ public class PlayerController : MonoBehaviour
         return isLeftGrounded || isRightGrounded || isCenterGrounded;
     }
 
+    private bool WallCheck()
+    {
+        Vector2 position = transform.position;
+        Vector2 leftRayOrigin = position + Vector2.left * 0.7f;
+        Vector2 rightRayOrigin = position + Vector2.right * 0.7f;
+
+        bool isLeftWall = Physics2D.Raycast(leftRayOrigin, Vector2.left, 0.75f, LayerMask.GetMask("Wall"));
+        bool isRightWall = Physics2D.Raycast(rightRayOrigin, Vector2.right, 0.75f, LayerMask.GetMask("Wall"));
+
+        Debug.DrawRay(leftRayOrigin, Vector2.left * 0.75f, Color.red);
+        Debug.DrawRay(rightRayOrigin, Vector2.right * 0.75f, Color.red);
+
+        return isLeftWall || isRightWall;
+    }
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

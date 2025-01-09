@@ -42,7 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -243,8 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1588060592}
   smoothSpeed: 0.003
-  offset: {x: -3, y: 0, z: 0}
-  offsetMultiplier: 1
+  offset: {x: -2, y: 0, z: 0}
   zoomOutFactor: 0.3
   maxZoomOut: 20
   minZoomIn: 10

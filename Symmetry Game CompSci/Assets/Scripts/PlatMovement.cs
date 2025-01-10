@@ -28,13 +28,10 @@ public class PlayerController : MonoBehaviour
         isGrounded = CheckGrounded();
         isWall = WallCheck();
 
-        Debug.Log("Is wall: " + isWall);
-
         // Jump
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            Debug.Log("Jumping");
         }
 
         // Wall jump with continuous activation
@@ -42,7 +39,6 @@ public class PlayerController : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             lastWallJumpTime = Time.time;
-            Debug.Log("Jumping off wall");
         }
 
         // Fall faster

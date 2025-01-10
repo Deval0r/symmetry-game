@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     private float wallJumpCooldown = 0.1f;
     private float lastWallJumpTime;
 
+    public Vector3 UICoordiantes;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -20,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
         // Movement
         float moveInput = Input.GetAxisRaw("Horizontal");
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);

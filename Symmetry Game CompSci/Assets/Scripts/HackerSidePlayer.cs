@@ -2,21 +2,20 @@ using UnityEngine;
 
 public class HackerSidePlayer : MonoBehaviour
 {
-    private float scaleFactor;
-
-    public PlayerController playerController;
-    public Camera mainCamera;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        playerController = FindObjectOfType<PlayerController>();
-        scaleFactor = 0.5f;
-    }
+    public Transform realPlayer; // Reference to the real player's transform
+    public float minimapScaleFactor = 0.05f; // Scale factor for the minimap (1/20th of the main map)
+    public Vector3 minimapOffset; // Offset to position the minimap correctly
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 position = mainCamera.WorldToScreenPoint(playerController.transform.position);
-        transform.position = (new Vector2(position.x + 2000, position.y)) * scaleFactor;
+        // Get the real player's position in world coordinates
+        Vector3 realPlayerPosition = realPlayer.position;
+
+        // Calculate the dummy player's position on the minimap
+        Vector3 minimapPosition = realPlayerPosition * minimapScaleFactor + minimapOffset;
+
+        // Set the dummy player's position
+        transform.position = minimapPosition;
     }
 }

@@ -12,6 +12,7 @@ public class DoorMovement : MonoBehaviour
         // Debugging doorPrefab assignment
         if (doorPrefab == null)
         {
+            Debug.LogError("Door Prefab is not assigned!");
             return;
         }
 
@@ -31,6 +32,7 @@ public class DoorMovement : MonoBehaviour
             if (Vector3.Distance(doorPrefab.transform.position, targetPosition) < 0.01f)
             {
                 isMoving = false;
+                Debug.Log("Door reached target position.");
             }
         }
     }
@@ -38,6 +40,7 @@ public class DoorMovement : MonoBehaviour
     // Method to start the door movement (linked to the UI button)
     public void StartDoorMovement()
     {
+        Debug.Log("StartDoorMovement called");
         isMoving = true;
     }
 }

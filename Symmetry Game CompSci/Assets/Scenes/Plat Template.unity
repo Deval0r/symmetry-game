@@ -538,12 +538,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 562921834}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3455cbffb228a45b28ff882090bb0c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  realBlock: {fileID: 0}
+  realBlock: {fileID: 2007298513}
   minimapScaleFactor: 0.05
   minimapOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &701589200 stripped
@@ -597,6 +597,11 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.08, y: 1.08}
   m_EdgeRadius: 0
+--- !u!4 &701589203 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3299701477653041377, guid: 83be54e95b3740c4c97084f1cb37df66, type: 3}
+  m_PrefabInstance: {fileID: 759741395}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &759741395
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -740,6 +745,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 562921838}
   m_SourcePrefab: {fileID: 100100000, guid: 83be54e95b3740c4c97084f1cb37df66, type: 3}
+--- !u!1 &784425714 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8717438258578934162, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
+  m_PrefabInstance: {fileID: 1023049721012961621}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1164919892
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,9 +785,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -137, y: 50}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 789.1, y: 350.24}
+  m_SizeDelta: {x: 37.2, y: 27.2}
+  m_Pivot: {x: 37.2, y: 27.2}
 --- !u!114 &1164919894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1093,12 +1103,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1252704581}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3455cbffb228a45b28ff882090bb0c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  realBlock: {fileID: 0}
+  realBlock: {fileID: 1617395775}
   minimapScaleFactor: 0.05
   minimapOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &1343449557 stripped
@@ -1159,14 +1169,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343449557}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3455cbffb228a45b28ff882090bb0c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  realBlock: {fileID: 0}
+  realBlock: {fileID: 701589203}
   minimapScaleFactor: 0.05
-  minimapOffset: {x: 0, y: 0, z: 0}
+  minimapOffset: {x: 1000, y: 0, z: 0}
 --- !u!1 &1442885541
 GameObject:
   m_ObjectHideFlags: 0
@@ -1317,6 +1327,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1445683810}
   m_CullTransparentMesh: 1
+--- !u!1 &1567359551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1567359553}
+  - component: {fileID: 1567359552}
+  m_Layer: 0
+  m_Name: DoorMovement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1567359552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567359551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ae0201deb221746a76d47c0d25c311, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorPrefab: {fileID: 784425714}
+  speed: 1
+--- !u!4 &1567359553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567359551}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.73643994, y: 9.577965, z: -0.43261677}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1588060589 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 889865187010162370, guid: 645adb7a585c4724fad2102958bce755, type: 3}
@@ -1451,6 +1507,11 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.08, y: 1.08}
   m_EdgeRadius: 0
+--- !u!4 &1617395775 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3299701477653041377, guid: 83be54e95b3740c4c97084f1cb37df66, type: 3}
+  m_PrefabInstance: {fileID: 549167757}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1627528608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1716,7 +1777,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7427078076950631620, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
         m_TargetAssemblyTypeName: DoorMovement, Assembly-CSharp
-        m_MethodName: ToggleDoor
+        m_MethodName: StartDoorMovement
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1882,6 +1943,11 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.08, y: 1.08}
   m_EdgeRadius: 0
+--- !u!4 &2007298513 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3299701477653041377, guid: 83be54e95b3740c4c97084f1cb37df66, type: 3}
+  m_PrefabInstance: {fileID: 1180294985}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2037926088
 GameObject:
   m_ObjectHideFlags: 0
@@ -2077,11 +2143,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7427078076950631620, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
+      propertyPath: doorPrefab
+      value: 
+      objectReference: {fileID: 784425714}
     - target: {fileID: 8717438258578934162, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7427078076950631620, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2103,3 +2174,4 @@ SceneRoots:
   - {fileID: 303172452}
   - {fileID: 780707974}
   - {fileID: 1627528608}
+  - {fileID: 1567359553}

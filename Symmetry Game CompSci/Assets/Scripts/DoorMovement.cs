@@ -2,56 +2,42 @@ using UnityEngine;
 
 public class DoorMovement : MonoBehaviour
 {
-    private bool isOpening = false;
-    private bool isClosing = false;
+    public GameObject doorPrefab;
+    public float speed = 1.0f;
     private Vector3 targetPosition;
-    private Vector3 closePosition;
-    private float speed = 2.0f;
+    private bool isMoving = false;
 
     void Start()
     {
-        targetPosition = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
-        closePosition = transform.position;
-        Debug.Log("Door initialized. Close position: " + closePosition + ", Open position: " + targetPosition);
+        // Debugging doorPrefab assignment
+        if (doorPrefab == null)
+        {
+            return;
+        }
+
+        // Set the target position to be 5 units above the current position
+        targetPosition = doorPrefab.transform.position + new Vector3(0, 5, 0); 
     }
 
     void Update()
     {
-        if (isOpening)
+        // Ensure movement is happening if isMoving is true
+        if (isMoving && doorPrefab != null)
         {
-            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * speed);
-            Debug.Log("Opening door. Current position: " + transform.position);
-            if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
+            // Lerp the position of the doorPrefab towards the target position
+            doorPrefab.transform.position = Vector3.Lerp(doorPrefab.transform.position, targetPosition, speed * Time.deltaTime);
+            
+            // If the door is close enough to the target, stop the movement
+            if (Vector3.Distance(doorPrefab.transform.position, targetPosition) < 0.01f)
             {
-                transform.position = targetPosition;
-                isOpening = false;
-                Debug.Log("Door fully opened.");
-            }
-        }
-        if (isClosing)
-        {
-            transform.position = Vector3.Lerp(transform.position, closePosition, Time.deltaTime * speed);
-            Debug.Log("Closing door. Current position: " + transform.position);
-            if (Vector3.Distance(transform.position, closePosition) < 0.01f)
-            {
-                transform.position = closePosition;
-                isClosing = false;
-                Debug.Log("Door fully closed.");
+                isMoving = false;
             }
         }
     }
 
-    public void OpenDoor()
+    // Method to start the door movement (linked to the UI button)
+    public void StartDoorMovement()
     {
-        isOpening = true;
-        isClosing = false;
-        Debug.Log("OpenDoor called.");
-    }
-
-    public void CloseDoor()
-    {
-        isClosing = true;
-        isOpening = false;
-        Debug.Log("CloseDoor called.");
+        isMoving = true;
     }
 }

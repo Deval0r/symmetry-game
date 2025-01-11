@@ -101,14 +101,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0508bdfbde0154724b49443ef1b61f9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeed: 0
+  maxDistance: 100
   mapGroundLayer:
     serializedVersion: 2
     m_Bits: 256
   playerDummyLayer:
     serializedVersion: 2
     m_Bits: 512
-  maxDistance: 100
-  playerHit: 1
+  mapMirrorLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  lineRenderer: {fileID: 0}
 --- !u!120 &-7444320590402460389
 LineRenderer:
   serializedVersion: 2

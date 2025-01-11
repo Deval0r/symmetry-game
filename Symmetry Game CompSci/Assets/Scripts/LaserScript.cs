@@ -1,31 +1,15 @@
 using UnityEngine;
 
-[RequireComponent(typeof(LineRenderer))]
 public class LaserScript : MonoBehaviour
 {
-    public LayerMask mapGroundLayer; // Layer mask for the mapGround layer
-    public LayerMask playerDummyLayer; // Layer mask for the player dummy layer
-    public float maxDistance = 100f; // Maximum distance the ray can travel
-    public bool playerHit = false; // Boolean to indicate if the player is hit
-    public float rotationSpeed = 10f; // Rotation speed in degrees per second
+    public float rotationSpeed;
+    public float maxDistance;
+    public LayerMask mapGroundLayer;
+    public LayerMask playerDummyLayer;
+    public LayerMask mapMirrorLayer;
+    public LineRenderer lineRenderer;
+    private bool playerHit;
 
-    private LineRenderer lineRenderer;
-
-    void Start()
-    {
-        // Get the LineRenderer component
-        lineRenderer = GetComponent<LineRenderer>();
-        // Set the number of positions to 2 (start and end of the line)
-        lineRenderer.positionCount = 2;
-        // Set the width of the line
-        lineRenderer.startWidth = 0.1f;
-        lineRenderer.endWidth = 0.1f;
-        // Set the color of the line
-        lineRenderer.startColor = Color.red;
-        lineRenderer.endColor = Color.red;
-    }
-
-    // Update is called once per frame
     void Update()
     {
         // Rotate the prefab clockwise
@@ -35,9 +19,9 @@ public class LaserScript : MonoBehaviour
         Vector3 direction = transform.right;
 
         // Cast the ray
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, maxDistance, mapGroundLayer | playerDummyLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, maxDistance, mapGroundLayer | playerDummyLayer | mapMirrorLayer);
 
-        // If the ray hits an object with the mapGround layer or the player dummy layer
+        // If the ray hits an object
         if (hit.collider != null)
         {
             // Set the positions of the LineRenderer to draw the ray
@@ -49,6 +33,29 @@ public class LaserScript : MonoBehaviour
             {
                 playerHit = true;
                 Debug.Log("PlayerDummy is touching the laser.");
+            }
+            // Check if the hit object is in the map mirror layer
+            else if (((1 << hit.collider.gameObject.layer) & mapMirrorLayer) != 0)
+            {
+                // Calculate the reflection direction
+                Vector3 reflectDirection = Vector3.Reflect(direction, hit.normal);
+
+                // Cast a new ray from the hit point in the reflection direction
+                RaycastHit2D reflectHit = Physics2D.Raycast(hit.point, reflectDirection, maxDistance, mapGroundLayer | playerDummyLayer);
+
+                // Set the positions of the LineRenderer to draw the reflected ray
+                lineRenderer.SetPosition(1, reflectHit.point);
+
+                // Check if the reflected ray hits the player dummy
+                if (reflectHit.collider != null && ((1 << reflectHit.collider.gameObject.layer) & playerDummyLayer) != 0)
+                {
+                    playerHit = true;
+                    Debug.Log("PlayerDummy is touching the reflected laser.");
+                }
+                else
+                {
+                    playerHit = false;
+                }
             }
             else
             {

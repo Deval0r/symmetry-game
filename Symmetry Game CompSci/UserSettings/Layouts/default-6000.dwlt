@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 7.2000003
-    y: 50.4
-    width: 1020.8
-    height: 758.4
+    x: 7.3333335
+    y: 50.666668
+    width: 1020.6667
+    height: 758.6667
   m_ShowMode: 4
   m_Title: Scene
   m_RootView: {fileID: 3}
@@ -41,8 +41,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 36
-    width: 1020.8
-    height: 702.4
+    width: 1020.6667
+    height: 702.6667
   m_MinSize: {x: 200, y: 228}
   m_MaxSize: {x: 4000, y: 4028}
   m_ActualView: {fileID: 6}
@@ -66,8 +66,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1020.8
-    height: 758.4
+    width: 1020.6667
+    height: 758.6667
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
@@ -91,7 +91,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1020.8
+    width: 1020.6667
     height: 36
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -112,8 +112,8 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 738.4
-    width: 1020.8
+    y: 738.6667
+    width: 1020.6667
     height: 20
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -140,8 +140,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 36
-    width: 1020.8
-    height: 702.4
+    width: 1020.6667
+    height: 702.6667
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -654,9 +654,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 1280.9335, y: 202.40567, z: -5.8168173}
+    m_Target: {x: -9.000296, y: -2.2508993, z: -0.067888446}
     speed: 2
-    m_Value: {x: -9.000296, y: -2.2508993, z: -0.067888446}
+    m_Value: {x: 1280.9335, y: 202.40567, z: -5.8168173}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -706,9 +706,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 582.4142
+    m_Target: 16.787075
     speed: 2
-    m_Value: 16.787075
+    m_Value: 582.4142
   m_Ortho:
     m_Target: 1
     speed: 2

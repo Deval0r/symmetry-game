@@ -3,7 +3,7 @@ using UnityEngine;
 public class DoorMovement : MonoBehaviour
 {
     public GameObject Door;
-    public float speed = 1.0f;
+    public float speed = 5.0f; // Increased speed for faster movement
     public Vector3 movementAmount = new Vector3(0, 5, 0); // Editable in the inspector
     private Vector3 initialPosition;
     private Vector3 targetPosition;

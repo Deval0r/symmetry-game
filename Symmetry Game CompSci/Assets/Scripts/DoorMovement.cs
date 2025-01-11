@@ -2,45 +2,65 @@ using UnityEngine;
 
 public class DoorMovement : MonoBehaviour
 {
-    public GameObject doorPrefab;
+    public GameObject Door;
     public float speed = 1.0f;
-    private Vector3 targetPosition;
-    private bool isMoving = false;
+    private Vector3 targetPositionUp;
+    private Vector3 targetPositionDown;
+    private bool isMovingUp = false;
+    private bool isMovingDown = false;
+    private bool isAtTop = false;
 
     void Start()
     {
-        // Debugging doorPrefab assignment
-        if (doorPrefab == null)
-        {
-            Debug.LogError("Door Prefab is not assigned!");
-            return;
-        }
-
-        // Set the target position to be 5 units above the current position
-        targetPosition = doorPrefab.transform.position + new Vector3(0, 5, 0); 
+        // Set the initial positions
+        targetPositionUp = Door.transform.position + new Vector3(0, 5, 0);
+        targetPositionDown = Door.transform.position;
+        Debug.Log("DoorMovement initialized. Target positions set.");
     }
 
     void Update()
     {
-        // Ensure movement is happening if isMoving is true
-        if (isMoving && doorPrefab != null)
+        if (isMovingUp)
         {
-            // Lerp the position of the doorPrefab towards the target position
-            doorPrefab.transform.position = Vector3.Lerp(doorPrefab.transform.position, targetPosition, speed * Time.deltaTime);
-            
-            // If the door is close enough to the target, stop the movement
-            if (Vector3.Distance(doorPrefab.transform.position, targetPosition) < 0.01f)
+            Door.transform.position = Vector3.Lerp(Door.transform.position, targetPositionUp, speed * Time.deltaTime);
+            Debug.Log("Door moving up. Current position: " + Door.transform.position);
+            if (Vector3.Distance(Door.transform.position, targetPositionUp) < 0.01f)
             {
-                isMoving = false;
-                Debug.Log("Door reached target position.");
+                Door.transform.position = targetPositionUp; // Snap to target position
+                isMovingUp = false;
+                isAtTop = true;
+                Debug.Log("Door reached the upper position. Stopping movement.");
+            }
+        }
+        else if (isMovingDown)
+        {
+            Door.transform.position = Vector3.Lerp(Door.transform.position, targetPositionDown, speed * Time.deltaTime);
+            Debug.Log("Door moving down. Current position: " + Door.transform.position);
+            if (Vector3.Distance(Door.transform.position, targetPositionDown) < 0.01f)
+            {
+                Door.transform.position = targetPositionDown; // Snap to target position
+                isMovingDown = false;
+                isAtTop = false;
+                Debug.Log("Door reached the lower position. Stopping movement.");
             }
         }
     }
 
-    // Method to start the door movement (linked to the UI button)
+    // Method to toggle the door movement (linked to the UI button)
     public void StartDoorMovement()
     {
-        Debug.Log("StartDoorMovement called");
-        isMoving = true;
+        if (!isMovingUp && !isMovingDown)
+        {
+            if (isAtTop)
+            {
+                isMovingDown = true;
+                Debug.Log("Door movement started. Moving down.");
+            }
+            else
+            {
+                isMovingUp = true;
+                Debug.Log("Door movement started. Moving up.");
+            }
+        }
     }
 }

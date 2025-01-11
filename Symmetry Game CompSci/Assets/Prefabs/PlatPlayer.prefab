@@ -49,6 +49,7 @@ MonoBehaviour:
   jumpForce: 10
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
+  UICoordiantes: {x: 0, y: 0, z: 0}
 --- !u!212 &8079095482100535592
 SpriteRenderer:
   m_ObjectHideFlags: 0

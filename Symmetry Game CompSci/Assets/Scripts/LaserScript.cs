@@ -7,6 +7,7 @@ public class LaserScript : MonoBehaviour
     public LayerMask playerDummyLayer; // Layer mask for the player dummy layer
     public float maxDistance = 100f; // Maximum distance the ray can travel
     public bool playerHit = false; // Boolean to indicate if the player is hit
+    public float rotationSpeed = 10f; // Rotation speed in degrees per second
 
     private LineRenderer lineRenderer;
 
@@ -27,6 +28,9 @@ public class LaserScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Rotate the prefab clockwise
+        transform.Rotate(Vector3.forward, -rotationSpeed * Time.deltaTime);
+
         // Direction of the ray based on the prefab's rotation
         Vector3 direction = transform.right;
 

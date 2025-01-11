@@ -2,28 +2,45 @@ using UnityEngine;
 
 public class DoorMovement : MonoBehaviour
 {
-    private bool isOpening = false;
+    public GameObject doorPrefab;
+    public float speed = 1.0f;
     private Vector3 targetPosition;
+    private bool isMoving = false;
 
     void Start()
     {
-        targetPosition = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
+        // Debugging doorPrefab assignment
+        if (doorPrefab == null)
+        {
+            Debug.LogError("Door Prefab is not assigned!");
+            return;
+        }
+
+        // Set the target position to be 5 units above the current position
+        targetPosition = doorPrefab.transform.position + new Vector3(0, 5, 0); 
     }
 
     void Update()
     {
-        if (isOpening)
+        // Ensure movement is happening if isMoving is true
+        if (isMoving && doorPrefab != null)
         {
-            transform.position = Vector3.Lerp(transform.position, targetPosition, 0.001f);
-            if (transform.position == targetPosition)
+            // Lerp the position of the doorPrefab towards the target position
+            doorPrefab.transform.position = Vector3.Lerp(doorPrefab.transform.position, targetPosition, speed * Time.deltaTime);
+            
+            // If the door is close enough to the target, stop the movement
+            if (Vector3.Distance(doorPrefab.transform.position, targetPosition) < 0.01f)
             {
-                isOpening = false;
+                isMoving = false;
+                Debug.Log("Door reached target position.");
             }
         }
     }
 
-    public void OpenDoor()
+    // Method to start the door movement (linked to the UI button)
+    public void StartDoorMovement()
     {
-        isOpening = true;
+        Debug.Log("StartDoorMovement called");
+        isMoving = true;
     }
 }

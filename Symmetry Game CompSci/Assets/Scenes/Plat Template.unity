@@ -119,6 +119,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &44479815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 44479816}
+  m_Layer: 0
+  m_Name: Minimap Center
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &44479816
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44479815}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -209, y: -45.55, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &303172452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -224,6 +255,7 @@ GameObject:
   - component: {fileID: 428177383}
   - component: {fileID: 428177382}
   - component: {fileID: 428177381}
+  - component: {fileID: 428177385}
   m_Layer: 5
   m_Name: Hacker Button(Open Door) (1)
   m_TagString: Untagged
@@ -248,8 +280,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 461.98932, y: -352.67}
-  m_SizeDelta: {x: 28.8879, y: 39.653}
+  m_AnchoredPosition: {x: 459.9344, y: -352.67}
+  m_SizeDelta: {x: 24.7779, y: 39.653}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &428177381
 MonoBehaviour:
@@ -360,6 +392,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 428177379}
   m_CullTransparentMesh: 1
+--- !u!114 &428177385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428177379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489d1f6b3d217bd49833d65bc1a7ece7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  realObject: {fileID: 1028077138}
+  minimapCenter: {fileID: 44479816}
+  minimapScaleFactor: 9
 --- !u!1001 &440915719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1252,6 +1299,11 @@ MonoBehaviour:
   Door: {fileID: 784425714}
   speed: 5
   movementAmount: {x: 0, y: 5, z: 0}
+--- !u!4 &784425723 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6594750973965443550, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
+  m_PrefabInstance: {fileID: 1023049721012961621}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1028077133 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8717438258578934162, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
@@ -1272,6 +1324,11 @@ MonoBehaviour:
   Door: {fileID: 1028077133}
   speed: 5
   movementAmount: {x: -5, y: 5, z: 0}
+--- !u!4 &1028077138 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6594750973965443550, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
+  m_PrefabInstance: {fileID: 458644049}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1164919892
 GameObject:
   m_ObjectHideFlags: 0
@@ -1733,7 +1790,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 640, y: 0}
+  m_AnchoredPosition: {x: 640, y: 9.7}
   m_SizeDelta: {x: 1280, y: 1440}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1442885543
@@ -2189,6 +2246,7 @@ GameObject:
   - component: {fileID: 1939330915}
   - component: {fileID: 1939330917}
   - component: {fileID: 1939330919}
+  - component: {fileID: 1939330920}
   m_Layer: 5
   m_Name: Hacker Button(Open Door)
   m_TagString: Untagged
@@ -2325,6 +2383,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1939330920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939330912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489d1f6b3d217bd49833d65bc1a7ece7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  realObject: {fileID: 784425723}
+  minimapCenter: {fileID: 44479816}
+  minimapScaleFactor: 9
 --- !u!1001 &2000979972
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2754,3 +2827,4 @@ SceneRoots:
   - {fileID: 780707974}
   - {fileID: 1627528608}
   - {fileID: 440915719}
+  - {fileID: 44479816}

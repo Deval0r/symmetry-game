@@ -30,44 +30,38 @@ public class LaserScript : MonoBehaviour
         // Rotate the prefab clockwise
         transform.Rotate(Vector3.forward, -rotationSpeed * Time.deltaTime);
 
-        // Direction of the ray based on the prefab's rotation
-        Vector3 direction = transform.right;
-        Vector3 currentPosition = transform.position;
+        // Cast the initial laser
+        CastLaser(transform.position, transform.right, maxReflections);
+    }
 
-        // Initialize the LineRenderer
-        lineRenderer.positionCount = 1;
-        lineRenderer.SetPosition(0, currentPosition);
+    void CastLaser(Vector3 position, Vector3 direction, int reflectionsRemaining)
+    {
+        Vector3[] positions = new Vector3[(maxReflections + 1) * 2];
+        int positionIndex = 0;
 
-        int reflections = 0;
-        playerHit = false;
-
-        while (reflections < maxReflections)
+        while (reflectionsRemaining > 0)
         {
-            // Cast the ray
-            RaycastHit2D hit = Physics2D.Raycast(currentPosition, direction, maxDistance, mapGroundLayer | playerDummyLayer | mapMirrorLayer);
+            RaycastHit2D hit = Physics2D.Raycast(position, direction, maxDistance, mapGroundLayer | playerDummyLayer | mapMirrorLayer);
+            positions[positionIndex++] = position;
 
             if (hit.collider != null)
             {
-                reflections++;
-                Vector3 hitPoint = hit.point;
-                hitPoint.z = currentPosition.z; // Ensure the reflection point is on the same z-axis
+                positions[positionIndex++] = hit.point;
 
-                lineRenderer.positionCount = reflections + 1;
-                lineRenderer.SetPosition(reflections, hitPoint);
-
-                // Check if the hit object is in the player dummy layer
                 if (((1 << hit.collider.gameObject.layer) & playerDummyLayer) != 0)
                 {
+                    // PlayerDummy hit
                     playerHit = true;
-                    Debug.Log("PlayerDummy is touching the laser.");
+                    Debug.Log("PlayerDummy hit!");
                     break;
                 }
-                // Check if the hit object is in the map mirror layer
-                else if (((1 << hit.collider.gameObject.layer) & mapMirrorLayer) != 0)
+
+                if (((1 << hit.collider.gameObject.layer) & mapMirrorLayer) != 0)
                 {
-                    // Calculate the reflection direction
+                    // Reflect the laser
                     direction = Vector3.Reflect(direction, hit.normal);
-                    currentPosition = hitPoint;
+                    position = hit.point;
+                    reflectionsRemaining--;
                 }
                 else
                 {
@@ -76,20 +70,12 @@ public class LaserScript : MonoBehaviour
             }
             else
             {
-                // Set the positions of the LineRenderer to draw the ray up to the maximum distance
-                Vector3 endPosition = currentPosition + direction * maxDistance;
-                endPosition.z = currentPosition.z; // Ensure the end point is on the same z-axis
-
-                lineRenderer.positionCount = reflections + 2;
-                lineRenderer.SetPosition(reflections + 1, endPosition);
+                positions[positionIndex++] = position + direction * maxDistance;
                 break;
             }
         }
 
-        // Debug message to indicate that the player dummy is not touching the laser
-        if (!playerHit)
-        {
-            Debug.Log("PlayerDummy is not touching the laser.");
-        }
+        lineRenderer.positionCount = positionIndex;
+        lineRenderer.SetPositions(positions);
     }
 }

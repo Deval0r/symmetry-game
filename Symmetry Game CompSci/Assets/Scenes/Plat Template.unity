@@ -248,8 +248,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1003, y: 272}
-  m_SizeDelta: {x: 293.0491, y: 210.5666}
+  m_AnchoredPosition: {x: 461.98932, y: -352.67}
+  m_SizeDelta: {x: 28.8879, y: 39.653}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &428177381
 MonoBehaviour:
@@ -335,7 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.509434, g: 0.19474976, b: 0.09515838, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -370,11 +370,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6594750973965443550, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.13
+      value: 4.19
       objectReference: {fileID: 0}
     - target: {fileID: 6594750973965443550, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.24
+      value: -0.27
       objectReference: {fileID: 0}
     - target: {fileID: 6594750973965443550, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
       propertyPath: m_LocalPosition.z
@@ -893,7 +893,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: DOOR 2
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1246,7 +1246,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1675.199, y: 388.5541}
+  m_AnchoredPosition: {x: 1660.535, y: 423.2452}
   m_SizeDelta: {x: 37.2, y: 27.2}
   m_Pivot: {x: 37.2, y: 27.2}
 --- !u!114 &1164919894
@@ -1427,7 +1427,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: DOOR
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2147,8 +2147,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1003, y: 521}
-  m_SizeDelta: {x: 293.0491, y: 210.5666}
+  m_AnchoredPosition: {x: 280.03, y: -333.94}
+  m_SizeDelta: {x: 22.6649, y: 34.689}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1939330915
 MonoBehaviour:
@@ -2163,7 +2163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.554717, g: 0.032445684, b: 0.032445684, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

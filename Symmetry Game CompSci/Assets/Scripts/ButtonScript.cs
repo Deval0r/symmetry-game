@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ButtonScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
@@ -12,25 +13,29 @@ public class ButtonScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     private Vector3 originalScale;
     private Vector3 originalPosition;
-    private bool isHovered = false;
+    private RectTransform rectTransform;
+    private Image image;
+    private Color originalColor;
 
     void Start()
     {
-        originalScale = transform.localScale;
-        originalPosition = transform.localPosition;
+        rectTransform = GetComponent<RectTransform>();
+        image = GetComponent<Image>();
+        originalColor = image.color;
+
+        originalScale = rectTransform.localScale;
+        originalPosition = rectTransform.anchoredPosition;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        isHovered = true;
         StopAllCoroutines();
-        StartCoroutine(AnimateButton(transform.localScale * hoverScale, originalPosition + new Vector3(-moveDistance, 0, 0)));
+        StartCoroutine(AnimateButton(originalScale * hoverScale, originalPosition + new Vector3(-moveDistance, 0, 0)));
         MoveOtherButtons(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        isHovered = false;
         StopAllCoroutines();
         StartCoroutine(AnimateButton(originalScale, originalPosition));
         MoveOtherButtons(false);
@@ -44,19 +49,19 @@ public class ButtonScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     private IEnumerator AnimateButton(Vector3 targetScale, Vector3 targetPosition)
     {
         float elapsedTime = 0f;
-        Vector3 startingScale = transform.localScale;
-        Vector3 startingPosition = transform.localPosition;
+        Vector3 startingScale = rectTransform.localScale;
+        Vector3 startingPosition = rectTransform.anchoredPosition;
 
         while (elapsedTime < animationDuration)
         {
-            transform.localScale = Vector3.Lerp(startingScale, targetScale, elapsedTime / animationDuration);
-            transform.localPosition = Vector3.Lerp(startingPosition, targetPosition, elapsedTime / animationDuration);
+            rectTransform.localScale = Vector3.Lerp(startingScale, targetScale, elapsedTime / animationDuration);
+            rectTransform.anchoredPosition = Vector3.Lerp(startingPosition, targetPosition, elapsedTime / animationDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        transform.localScale = targetScale;
-        transform.localPosition = targetPosition;
+        rectTransform.localScale = targetScale;
+        rectTransform.anchoredPosition = targetPosition;
     }
 
     private void MoveOtherButtons(bool moveAway)
@@ -65,41 +70,46 @@ public class ButtonScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             if (sibling != transform)
             {
-                Vector3 targetPosition = sibling.localPosition;
-                if (moveAway)
+                RectTransform siblingRect = sibling.GetComponent<RectTransform>();
+                ButtonScript siblingScript = sibling.GetComponent<ButtonScript>();
+                if (siblingRect != null && siblingScript != null)
                 {
-                    targetPosition += (sibling.localPosition - transform.localPosition).normalized * moveDistance;
+                    Vector3 targetPosition = siblingRect.anchoredPosition;
+                    if (moveAway)
+                    {
+                        Vector3 direction = (siblingRect.anchoredPosition - rectTransform.anchoredPosition).normalized;
+                        targetPosition += direction * moveDistance;
+                    }
+                    else
+                    {
+                        targetPosition = siblingScript.originalPosition;
+                    }
+                    StartCoroutine(AnimateSibling(siblingRect, targetPosition));
                 }
-                else
-                {
-                    targetPosition = sibling.GetComponent<ButtonScript>().originalPosition;
-                }
-                StartCoroutine(AnimateSibling(sibling, targetPosition));
             }
         }
     }
 
-    private IEnumerator AnimateSibling(Transform sibling, Vector3 targetPosition)
+    private IEnumerator AnimateSibling(RectTransform siblingRect, Vector3 targetPosition)
     {
         float elapsedTime = 0f;
-        Vector3 startingPosition = sibling.localPosition;
+        Vector3 startingPosition = siblingRect.anchoredPosition;
 
         while (elapsedTime < animationDuration)
         {
-            sibling.localPosition = Vector3.Lerp(startingPosition, targetPosition, elapsedTime / animationDuration);
+            siblingRect.anchoredPosition = Vector3.Lerp(startingPosition, targetPosition, elapsedTime / animationDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        sibling.localPosition = targetPosition;
+        siblingRect.anchoredPosition = targetPosition;
     }
 
     private IEnumerator FlashAndLoadScene()
     {
-        Color originalColor = GetComponent<SpriteRenderer>().color;
-        GetComponent<SpriteRenderer>().color = Color.white;
+        image.color = Color.white;
         yield return new WaitForSeconds(0.1f);
-        GetComponent<SpriteRenderer>().color = originalColor;
+        image.color = originalColor;
         yield return new WaitForSeconds(0.1f);
         SceneManager.LoadScene(sceneToLoad);
     }

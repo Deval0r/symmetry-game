@@ -1,21 +1,22 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 
-public class ButtonScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class ButtonScript : MonoBehaviour
 {
     public float hoverScale = 1.2f;
-    public float moveDistance = 10f;
-    public float animationDuration = 0.2f;
+    public float moveDistance = 100f; // Increased move distance
+    public float animationDuration = 1.0f; // Increased duration for smoother animation
     public string sceneToLoad;
+    public AnimationCurve animationCurve; // Animation curve for smooth, wavy effect
 
     private Vector3 originalScale;
     private Vector3 originalPosition;
     private RectTransform rectTransform;
     private Image image;
     private Color originalColor;
+    private bool isHovered = false;
 
     void Start()
     {
@@ -23,90 +24,63 @@ public class ButtonScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         image = GetComponent<Image>();
         originalColor = image.color;
 
-        originalScale = rectTransform.localScale;
-        originalPosition = rectTransform.anchoredPosition;
+        originalScale = transform.localScale;
+        originalPosition = transform.position;
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    void Update()
     {
-        StopAllCoroutines();
-        StartCoroutine(AnimateButton(originalScale * hoverScale, originalPosition + new Vector3(-moveDistance, 0, 0)));
-        MoveOtherButtons(true);
-    }
+        Vector2 localMousePosition = rectTransform.InverseTransformPoint(Input.mousePosition);
+        bool isMouseOver = rectTransform.rect.Contains(localMousePosition);
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        StopAllCoroutines();
-        StartCoroutine(AnimateButton(originalScale, originalPosition));
-        MoveOtherButtons(false);
-    }
+        if (isMouseOver && !isHovered)
+        {
+            Debug.Log("Mouse entered button area.");
+            isHovered = true;
+            StopAllCoroutines();
+            StartCoroutine(AnimateButton(originalScale * hoverScale, originalPosition + new Vector3(-moveDistance, 0, 0)));
+        }
+        else if (!isMouseOver && isHovered)
+        {
+            Debug.Log("Mouse exited button area.");
+            isHovered = false;
+            StopAllCoroutines();
+            StartCoroutine(AnimateButton(originalScale, originalPosition));
+        }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        StartCoroutine(FlashAndLoadScene());
+        if (isMouseOver && Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("Button clicked.");
+            StartCoroutine(FlashAndLoadScene());
+        }
     }
 
     private IEnumerator AnimateButton(Vector3 targetScale, Vector3 targetPosition)
     {
+        Debug.Log("Animating button to position: " + targetPosition);
         float elapsedTime = 0f;
-        Vector3 startingScale = rectTransform.localScale;
-        Vector3 startingPosition = rectTransform.anchoredPosition;
+        Vector3 startingScale = transform.localScale;
+        Vector3 startingPosition = transform.position;
 
         while (elapsedTime < animationDuration)
         {
-            rectTransform.localScale = Vector3.Lerp(startingScale, targetScale, elapsedTime / animationDuration);
-            rectTransform.anchoredPosition = Vector3.Lerp(startingPosition, targetPosition, elapsedTime / animationDuration);
+            float t = elapsedTime / animationDuration;
+            float curveValue = animationCurve.Evaluate(t);
+            transform.localScale = Vector3.LerpUnclamped(startingScale, targetScale, curveValue);
+            transform.position = Vector3.LerpUnclamped(startingPosition, targetPosition, curveValue);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        rectTransform.localScale = targetScale;
-        rectTransform.anchoredPosition = targetPosition;
-    }
-
-    private void MoveOtherButtons(bool moveAway)
-    {
-        foreach (Transform sibling in transform.parent)
-        {
-            if (sibling != transform)
-            {
-                RectTransform siblingRect = sibling.GetComponent<RectTransform>();
-                ButtonScript siblingScript = sibling.GetComponent<ButtonScript>();
-                if (siblingRect != null && siblingScript != null)
-                {
-                    Vector3 targetPosition = siblingRect.anchoredPosition;
-                    if (moveAway)
-                    {
-                        Vector3 direction = (siblingRect.anchoredPosition - rectTransform.anchoredPosition).normalized;
-                        targetPosition += direction * moveDistance;
-                    }
-                    else
-                    {
-                        targetPosition = siblingScript.originalPosition;
-                    }
-                    StartCoroutine(AnimateSibling(siblingRect, targetPosition));
-                }
-            }
-        }
-    }
-
-    private IEnumerator AnimateSibling(RectTransform siblingRect, Vector3 targetPosition)
-    {
-        float elapsedTime = 0f;
-        Vector3 startingPosition = siblingRect.anchoredPosition;
-
-        while (elapsedTime < animationDuration)
-        {
-            siblingRect.anchoredPosition = Vector3.Lerp(startingPosition, targetPosition, elapsedTime / animationDuration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        siblingRect.anchoredPosition = targetPosition;
+        transform.localScale = targetScale;
+        transform.position = targetPosition;
+        Debug.Log("Button animation completed. New position: " + transform.position);
     }
 
     private IEnumerator FlashAndLoadScene()
     {
+        Debug.Log("Flashing button and loading scene.");
+        Color originalColor = image.color;
         image.color = Color.white;
         yield return new WaitForSeconds(0.1f);
         image.color = originalColor;

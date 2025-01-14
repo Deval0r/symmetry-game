@@ -422,6 +422,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  hoverSound: {fileID: 8300000, guid: 8d73755387f07c04da085a8bc0c8fbc6, type: 3}
 --- !u!114 &414448394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1422,6 +1423,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  hoverSound: {fileID: 8300000, guid: 8d73755387f07c04da085a8bc0c8fbc6, type: 3}
 --- !u!114 &1557614772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1731,6 +1733,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  hoverSound: {fileID: 8300000, guid: 8d73755387f07c04da085a8bc0c8fbc6, type: 3}
 --- !u!114 &1900116925
 MonoBehaviour:
   m_ObjectHideFlags: 0

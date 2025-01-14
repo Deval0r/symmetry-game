@@ -10,6 +10,7 @@ public class ButtonScript : MonoBehaviour
     public float animationDuration = 1.0f; // Increased duration for smoother animation
     public string sceneToLoad;
     public AnimationCurve animationCurve; // Animation curve for smooth, wavy effect
+    public AudioClip hoverSound; // Assignable hover sound
 
     private Vector3 originalScale;
     private Vector3 originalPosition;
@@ -19,6 +20,7 @@ public class ButtonScript : MonoBehaviour
     private Image image;
     private Color originalColor;
     private bool isHovered = false;
+    private AudioSource audioSource;
 
     void Start()
     {
@@ -30,6 +32,10 @@ public class ButtonScript : MonoBehaviour
         originalPosition = transform.position;
         targetScale = originalScale;
         targetPosition = originalPosition;
+
+        // Add an AudioSource component if it doesn't already exist
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
     }
 
     void Update()
@@ -44,6 +50,13 @@ public class ButtonScript : MonoBehaviour
             targetScale = originalScale * hoverScale;
             targetPosition = originalPosition + new Vector3(-moveDistance, 0, 0);
             MoveOtherButtons(true);
+
+            // Play hover sound
+            if (hoverSound != null)
+            {
+                audioSource.clip = hoverSound;
+                audioSource.Play();
+            }
         }
         else if (!isMouseOver && isHovered)
         {

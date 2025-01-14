@@ -13,6 +13,8 @@ public class ButtonScript : MonoBehaviour
 
     private Vector3 originalScale;
     private Vector3 originalPosition;
+    private Vector3 targetScale;
+    private Vector3 targetPosition;
     private RectTransform rectTransform;
     private Image image;
     private Color originalColor;
@@ -26,6 +28,8 @@ public class ButtonScript : MonoBehaviour
 
         originalScale = transform.localScale;
         originalPosition = transform.position;
+        targetScale = originalScale;
+        targetPosition = originalPosition;
     }
 
     void Update()
@@ -37,15 +41,17 @@ public class ButtonScript : MonoBehaviour
         {
             Debug.Log("Mouse entered button area.");
             isHovered = true;
-            StopAllCoroutines();
-            StartCoroutine(AnimateButton(originalScale * hoverScale, originalPosition + new Vector3(-moveDistance, 0, 0)));
+            targetScale = originalScale * hoverScale;
+            targetPosition = originalPosition + new Vector3(-moveDistance, 0, 0);
+            MoveOtherButtons(true);
         }
         else if (!isMouseOver && isHovered)
         {
             Debug.Log("Mouse exited button area.");
             isHovered = false;
-            StopAllCoroutines();
-            StartCoroutine(AnimateButton(originalScale, originalPosition));
+            targetScale = originalScale;
+            targetPosition = originalPosition;
+            MoveOtherButtons(false);
         }
 
         if (isMouseOver && Input.GetMouseButtonDown(0))
@@ -53,28 +59,33 @@ public class ButtonScript : MonoBehaviour
             Debug.Log("Button clicked.");
             StartCoroutine(FlashAndLoadScene());
         }
+
+        // Smoothly interpolate to the target scale and position
+        float t = Time.deltaTime / animationDuration;
+        transform.localScale = Vector3.Lerp(transform.localScale, targetScale, t);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, t);
     }
 
-    private IEnumerator AnimateButton(Vector3 targetScale, Vector3 targetPosition)
+    private void MoveOtherButtons(bool moveAway)
     {
-        Debug.Log("Animating button to position: " + targetPosition);
-        float elapsedTime = 0f;
-        Vector3 startingScale = transform.localScale;
-        Vector3 startingPosition = transform.position;
-
-        while (elapsedTime < animationDuration)
+        foreach (Transform sibling in transform.parent)
         {
-            float t = elapsedTime / animationDuration;
-            float curveValue = animationCurve.Evaluate(t);
-            transform.localScale = Vector3.LerpUnclamped(startingScale, targetScale, curveValue);
-            transform.position = Vector3.LerpUnclamped(startingPosition, targetPosition, curveValue);
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            if (sibling != transform)
+            {
+                ButtonScript siblingScript = sibling.GetComponent<ButtonScript>();
+                if (siblingScript != null)
+                {
+                    if (moveAway)
+                    {
+                        siblingScript.targetPosition = siblingScript.originalPosition + (sibling.position - transform.position).normalized * moveDistance * 0.5f;
+                    }
+                    else
+                    {
+                        siblingScript.targetPosition = siblingScript.originalPosition;
+                    }
+                }
+            }
         }
-
-        transform.localScale = targetScale;
-        transform.position = targetPosition;
-        Debug.Log("Button animation completed. New position: " + transform.position);
     }
 
     private IEnumerator FlashAndLoadScene()

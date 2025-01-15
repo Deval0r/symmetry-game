@@ -23,6 +23,10 @@ public class LaserScript : MonoBehaviour
         widthCurve.AddKey(0.0f, 0.68f); // New width
         widthCurve.AddKey(1.0f, 0.68f); // New width
         lineRenderer.widthCurve = widthCurve;
+
+        // Set the sorting layer and order to ensure the laser is rendered above the UI
+        lineRenderer.sortingLayerName = "AboveUI"; // Ensure this layer exists in your project
+        lineRenderer.sortingOrder = 1000; // Adjust this value as needed
     }
 
     void Update()

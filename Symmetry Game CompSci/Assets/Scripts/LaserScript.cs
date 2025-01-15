@@ -20,59 +20,62 @@ public class LaserScript : MonoBehaviour
 
         // Set the width curve to ensure the laser has a consistent width
         AnimationCurve widthCurve = new AnimationCurve();
-        widthCurve.AddKey(0.0f, 0.68f);
-        widthCurve.AddKey(1.0f, 0.68f);
+        widthCurve.AddKey(0.0f, 0.68f); // New width
+        widthCurve.AddKey(1.0f, 0.68f); // New width
         lineRenderer.widthCurve = widthCurve;
-
-        // Set the material and color of the LineRenderer
-        lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
-        lineRenderer.startColor = Color.green; // Change to desired color
-        lineRenderer.endColor = Color.green;   // Change to desired color
     }
 
     void Update()
     {
-        // Rotate the laser
-        transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
+        // Rotate the prefab clockwise
+        transform.Rotate(Vector3.forward, -rotationSpeed * Time.deltaTime);
 
-        // Cast the laser and update the LineRenderer positions
-        CastLaser();
+        // Cast the initial laser
+        CastLaser(transform.position, transform.right, maxReflections);
     }
 
-    void CastLaser()
+    void CastLaser(Vector3 position, Vector3 direction, int reflectionsRemaining)
     {
-        Vector3 direction = transform.right;
-        Vector3 currentPosition = transform.position;
-        lineRenderer.SetPosition(0, currentPosition);
+        Vector3[] positions = new Vector3[(maxReflections + 1) * 2];
+        int positionIndex = 0;
 
-        for (int i = 0; i < maxReflections; i++)
+        while (reflectionsRemaining > 0)
         {
-            RaycastHit2D hit = Physics2D.Raycast(currentPosition, direction, maxDistance, mapGroundLayer | playerDummyLayer | mapMirrorLayer);
+            RaycastHit2D hit = Physics2D.Raycast(position, direction, maxDistance, mapGroundLayer | playerDummyLayer | mapMirrorLayer);
+            positions[positionIndex++] = position;
+
             if (hit.collider != null)
             {
-                lineRenderer.positionCount = i + 2;
-                lineRenderer.SetPosition(i + 1, hit.point);
-                currentPosition = hit.point;
+                positions[positionIndex++] = hit.point;
 
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("mapMirrorLayer"))
+                if (((1 << hit.collider.gameObject.layer) & playerDummyLayer) != 0)
                 {
+                    // PlayerDummy hit
+                    playerHit = true;
+                    Debug.Log("PlayerDummy hit!");
+                    break;
+                }
+
+                if (((1 << hit.collider.gameObject.layer) & mapMirrorLayer) != 0)
+                {
+                    // Reflect the laser
                     direction = Vector3.Reflect(direction, hit.normal);
+                    position = hit.point;
+                    reflectionsRemaining--;
                 }
                 else
                 {
-                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("playerDummyLayer"))
-                    {
-                        playerHit = true;
-                    }
                     break;
                 }
             }
             else
             {
-                lineRenderer.positionCount = i + 2;
-                lineRenderer.SetPosition(i + 1, currentPosition + direction * maxDistance);
+                positions[positionIndex++] = position + direction * maxDistance;
                 break;
             }
         }
+
+        lineRenderer.positionCount = positionIndex;
+        lineRenderer.SetPositions(positions);
     }
 }

@@ -422,9 +422,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  hoverSound: {fileID: 8300000, guid: 8d73755387f07c04da085a8bc0c8fbc6, type: 3}
+  hoverSound: {fileID: 8300000, guid: 792c251e90034594893319333f1dd442, type: 3}
+  hoverSoundVolume: 2
   buttonText: Options
   textOffset: {x: -50, y: 0}
+  isExitButton: 0
 --- !u!114 &414448394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -834,6 +836,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8880941946260173490, guid: 165a25a6a85c66c489df2b1598af56bc, type: 3}
+      propertyPath: musicVolume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: -8880941946260173490, guid: 165a25a6a85c66c489df2b1598af56bc, type: 3}
       propertyPath: welcomeHomeTrack
       value: 
@@ -1358,6 +1364,7 @@ GameObject:
   - component: {fileID: 1557614773}
   - component: {fileID: 1557614772}
   - component: {fileID: 1557614771}
+  - component: {fileID: 1557614775}
   m_Layer: 5
   m_Name: PlayButton (2)
   m_TagString: Untagged
@@ -1425,9 +1432,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  hoverSound: {fileID: 8300000, guid: 8d73755387f07c04da085a8bc0c8fbc6, type: 3}
+  hoverSound: {fileID: 8300000, guid: 792c251e90034594893319333f1dd442, type: 3}
+  hoverSoundVolume: 2
   buttonText: Exit
   textOffset: {x: -50, y: 0}
+  isExitButton: 1
 --- !u!114 &1557614772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1510,6 +1519,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557614769}
   m_CullTransparentMesh: 1
+--- !u!114 &1557614775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557614769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 160c083e7ad9a004a8aae42ed5b83621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1762377740
 GameObject:
   m_ObjectHideFlags: 0
@@ -1737,9 +1758,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  hoverSound: {fileID: 8300000, guid: 8d73755387f07c04da085a8bc0c8fbc6, type: 3}
+  hoverSound: {fileID: 8300000, guid: 792c251e90034594893319333f1dd442, type: 3}
+  hoverSoundVolume: 2
   buttonText: Play
   textOffset: {x: -50, y: 0}
+  isExitButton: 0
 --- !u!114 &1900116925
 MonoBehaviour:
   m_ObjectHideFlags: 0

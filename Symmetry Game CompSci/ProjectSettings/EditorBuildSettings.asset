@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Plat Template.unity
     guid: bef72c66394b9864bb8488f541af4ae4
+  - enabled: 0
+    path: Assets/Scenes/EndGame.unity
+    guid: 21413c13d8c1c154585dc1e25f3b69ea
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

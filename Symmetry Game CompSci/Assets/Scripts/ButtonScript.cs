@@ -12,6 +12,7 @@ public class ButtonScript : MonoBehaviour
     public string sceneToLoad;
     public AnimationCurve animationCurve; // Animation curve for smooth, wavy effect
     public AudioClip hoverSound; // Assignable hover sound
+    public float hoverSoundVolume = 1.0f; // Volume for the hover sound
     public string buttonText = "New Button Text"; // Assignable button text
     public Vector2 textOffset = new Vector2(-50, 0); // Offset for the text position
     public bool isExitButton = false; // Flag to indicate if this is the exit button
@@ -74,10 +75,12 @@ public class ButtonScript : MonoBehaviour
                 targetPosition = originalPosition + new Vector3(-moveDistance, 0, 0);
                 MoveOtherButtons(true);
 
-                // Play hover sound with cooldown
+                // Play hover sound with cooldown and random pitch
                 if (hoverSound != null && Time.time - lastHoverSoundTime > hoverSoundCooldown)
                 {
                     audioSource.clip = hoverSound;
+                    audioSource.pitch = 1.0f + Random.Range(-0.1f, 0.1f); // Random pitch between 0.9 and 1.1
+                    audioSource.volume = hoverSoundVolume; // Set the volume from the Inspector
                     audioSource.Play();
                     lastHoverSoundTime = Time.time;
                 }

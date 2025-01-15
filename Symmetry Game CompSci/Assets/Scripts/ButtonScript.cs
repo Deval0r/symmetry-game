@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro; // Import TextMeshPro namespace
 using System.Collections;
 
 public class ButtonScript : MonoBehaviour
@@ -11,6 +12,9 @@ public class ButtonScript : MonoBehaviour
     public string sceneToLoad;
     public AnimationCurve animationCurve; // Animation curve for smooth, wavy effect
     public AudioClip hoverSound; // Assignable hover sound
+    public string buttonText = "New Button Text"; // Assignable button text
+    public Vector2 textOffset = new Vector2(-50, 0); // Offset for the text position
+    public bool isExitButton = false; // Flag to indicate if this is the exit button
 
     private Vector3 originalScale;
     private Vector3 originalPosition;
@@ -18,14 +22,20 @@ public class ButtonScript : MonoBehaviour
     private Vector3 targetPosition;
     private RectTransform rectTransform;
     private Image image;
+    private TextMeshProUGUI textComponent; // Reference to the TextMeshProUGUI component
     private Color originalColor;
     private bool isHovered = false;
     private AudioSource audioSource;
+    private float hoverSoundCooldown = 0.2f; // Cooldown time in seconds
+    private float lastHoverSoundTime = 0f;
+    private float hoverDebounceTime = 0.1f; // Debounce time in seconds
+    private float lastHoverChangeTime = 0f;
 
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
         image = GetComponent<Image>();
+        textComponent = GetComponentInChildren<TextMeshProUGUI>(); // Get the TextMeshProUGUI component in the children
         originalColor = image.color;
 
         originalScale = transform.localScale;
@@ -36,6 +46,16 @@ public class ButtonScript : MonoBehaviour
         // Add an AudioSource component if it doesn't already exist
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
+
+        // Set the button text
+        if (textComponent != null)
+        {
+            textComponent.text = buttonText;
+
+            // Offset the text position
+            RectTransform textRectTransform = textComponent.GetComponent<RectTransform>();
+            textRectTransform.anchoredPosition += textOffset;
+        }
     }
 
     void Update()
@@ -43,34 +63,47 @@ public class ButtonScript : MonoBehaviour
         Vector2 localMousePosition = rectTransform.InverseTransformPoint(Input.mousePosition);
         bool isMouseOver = rectTransform.rect.Contains(localMousePosition);
 
-        if (isMouseOver && !isHovered)
+        if (Time.time - lastHoverChangeTime > hoverDebounceTime)
         {
-            Debug.Log("Mouse entered button area.");
-            isHovered = true;
-            targetScale = originalScale * hoverScale;
-            targetPosition = originalPosition + new Vector3(-moveDistance, 0, 0);
-            MoveOtherButtons(true);
-
-            // Play hover sound
-            if (hoverSound != null)
+            if (isMouseOver && !isHovered)
             {
-                audioSource.clip = hoverSound;
-                audioSource.Play();
+                Debug.Log("Mouse entered button area.");
+                isHovered = true;
+                lastHoverChangeTime = Time.time;
+                targetScale = originalScale * hoverScale;
+                targetPosition = originalPosition + new Vector3(-moveDistance, 0, 0);
+                MoveOtherButtons(true);
+
+                // Play hover sound with cooldown
+                if (hoverSound != null && Time.time - lastHoverSoundTime > hoverSoundCooldown)
+                {
+                    audioSource.clip = hoverSound;
+                    audioSource.Play();
+                    lastHoverSoundTime = Time.time;
+                }
             }
-        }
-        else if (!isMouseOver && isHovered)
-        {
-            Debug.Log("Mouse exited button area.");
-            isHovered = false;
-            targetScale = originalScale;
-            targetPosition = originalPosition;
-            MoveOtherButtons(false);
+            else if (!isMouseOver && isHovered)
+            {
+                Debug.Log("Mouse exited button area.");
+                isHovered = false;
+                lastHoverChangeTime = Time.time;
+                targetScale = originalScale;
+                targetPosition = originalPosition;
+                MoveOtherButtons(false);
+            }
         }
 
         if (isMouseOver && Input.GetMouseButtonDown(0))
         {
             Debug.Log("Button clicked.");
-            StartCoroutine(FlashAndLoadScene());
+            if (isExitButton)
+            {
+                FindObjectOfType<EndGame>().EndTheGame();
+            }
+            else
+            {
+                StartCoroutine(FlashAndLoadScene());
+            }
         }
 
         // Smoothly interpolate to the target scale and position

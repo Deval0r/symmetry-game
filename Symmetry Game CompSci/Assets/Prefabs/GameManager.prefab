@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   welcomeHomeTrack: {fileID: 8300000, guid: 4d09cb7e027aea246a0db0341ab4a664, type: 3}
+  musicVolume: 1
 --- !u!212 &4161068043235936663
 SpriteRenderer:
   m_ObjectHideFlags: 0

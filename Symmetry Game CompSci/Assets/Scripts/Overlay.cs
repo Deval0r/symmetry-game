@@ -18,9 +18,12 @@ public class Overlay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Move the object to follow the camera with an offset
-        Vector3 newPosition = mainCamera.transform.position + offset;
-        newPosition.z = 0; // Ensure the z position is always 0
+        // Calculate the offset in world space relative to the camera's position
+        Vector3 worldOffset = mainCamera.transform.TransformDirection(offset);
+
+        // Move the object to follow the camera with the world-space offset
+        Vector3 newPosition = mainCamera.transform.position + worldOffset;
+        newPosition.z = 0; // Ensure the z position remains 0 (for 2D view)
         transform.position = newPosition;
 
         // Adjust the scale of the object to remain visually consistent

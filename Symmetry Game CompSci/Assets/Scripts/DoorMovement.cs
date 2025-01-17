@@ -20,14 +20,15 @@ public class DoorMovement : MonoBehaviour
 
     void Update()
     {
+        print(isMoving);
         if (isMoving)
         {
             Vector3 target = isOpen ? initialPosition : targetPosition;
             Door.transform.position = Vector3.Lerp(Door.transform.position, target, speed * Time.deltaTime);
             Debug.Log("Door moving. Current position: " + Door.transform.position);
-            if (Vector3.Distance(Door.transform.position, target) < 0.01f)
+            if (Vector3.Distance(Door.transform.position, target) < 0.5f)
             {
-                Door.transform.position = target; // Snap to target position
+                //Door.transform.position = target; // Snap to target position
                 isMoving = false;
                 isOpen = !isOpen;
                 Debug.Log("Door reached the target position. Stopping movement.");

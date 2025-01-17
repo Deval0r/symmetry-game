@@ -25,7 +25,6 @@ public class JetpackController : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             rb.AddForce(Vector2.up * jetpackForce, ForceMode2D.Force);
-            Debug.Log("Jetpack active");
         }
 
         // Cap the maximum vertical speed

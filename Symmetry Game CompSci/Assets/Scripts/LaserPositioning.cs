@@ -39,10 +39,6 @@ public class LaserPositioning : MonoBehaviour
 
         // Update the object's position
         transform.position = worldPos;
-
-        // Optional: Debugging the result in the console
-        Debug.Log("Screen Position: " + screenPosition);
-        Debug.Log("World Position: " + worldPos);
     } 
 
 }

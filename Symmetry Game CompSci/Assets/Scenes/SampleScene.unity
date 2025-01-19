@@ -42,8 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 13
-  m_BakeOnSceneLoad: 0
+  serializedVersion: 12
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -661,7 +660,7 @@ PrefabInstance:
     - target: {fileID: -8880941946260173490, guid: 165a25a6a85c66c489df2b1598af56bc, type: 3}
       propertyPath: welcomeHomeTrack
       value: 
-      objectReference: {fileID: 8300000, guid: 9a18ba780df7c3146b8e3af36f3d175b, type: 3}
+      objectReference: {fileID: 8300000, guid: 4905530318322df409ef7508d7006ccb, type: 3}
     - target: {fileID: 2209894569956051050, guid: 165a25a6a85c66c489df2b1598af56bc, type: 3}
       propertyPath: m_LocalScale.x
       value: 10

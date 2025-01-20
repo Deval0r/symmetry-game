@@ -42,8 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 13
-  m_BakeOnSceneLoad: 0
+  serializedVersion: 12
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -405,8 +404,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 489d1f6b3d217bd49833d65bc1a7ece7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  realObject: {fileID: 1028077138}
   minimapCenter: {fileID: 44479816}
+  realObject: {fileID: 1028077138}
   minimapScaleFactor: 9
 --- !u!1001 &440915719
 PrefabInstance:
@@ -2726,8 +2725,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 489d1f6b3d217bd49833d65bc1a7ece7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  realObject: {fileID: 784425723}
   minimapCenter: {fileID: 44479816}
+  realObject: {fileID: 784425723}
   minimapScaleFactor: 9
 --- !u!1001 &2000979972
 PrefabInstance:

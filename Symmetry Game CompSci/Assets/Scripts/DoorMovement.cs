@@ -20,7 +20,6 @@ public class DoorMovement : MonoBehaviour
 
     void Update()
     {
-        print(isMoving);
         if (isMoving)
         {
             Vector3 target = isOpen ? initialPosition : targetPosition;

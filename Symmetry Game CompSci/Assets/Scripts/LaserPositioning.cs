@@ -15,8 +15,6 @@ public class LaserPositioning : MonoBehaviour
         {
             Vector3 screenPos = new Vector3(screenPosition.x * Screen.width, screenPosition.y * Screen.height, 0);
             Vector3 worldPos = cameraToUse.ScreenToWorldPoint(screenPos);
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(worldPos, 0.1f); // Draw a red sphere at the world position
         }
     }
 

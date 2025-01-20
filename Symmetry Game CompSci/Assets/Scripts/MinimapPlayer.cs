@@ -1,55 +1,39 @@
 using UnityEngine;
 
+/// <summary>
+/// Controls the position of a minimap object relative to a target object
+/// </summary>
 public class MinimapPlayer : MonoBehaviour
 {
-    // Reference to the UI object to track
-    public RectTransform uiObject;
+    [SerializeField]
+    [Tooltip("The target object to follow")]
+    private Transform targetObject;
 
-    // Optionally, set the camera to use. If null, it will use the main camera
-    public Camera cameraToUse;
+    [SerializeField]
+    [Tooltip("Offset from the target position")]
+    private Vector3 offset = Vector3.zero;
 
-    // Z distance from the camera to place the object in world space
-    public float zDistance = 10f;
-
-    // Offset to apply to the position
-    public Vector3 offset;
-
-    private void Start()
+    private void Update()
     {
-        if (cameraToUse == null)
-        {
-            cameraToUse = Camera.main;  // Use the main camera if none is set
-        }
+        if (targetObject == null) return;
+
+        // Update position to match target plus offset, with z = 0
+        Vector3 newPosition = targetObject.position + offset;
+        newPosition.z = 0;
+        transform.position = newPosition;
+            
+        // Debug log positions
+        Debug.Log($"Target: {targetObject.position}, Current: {transform.position}, Offset: {offset}");
     }
 
-    void Update()
-    {
-        if (uiObject != null)
-        {
-            // Get the screen position of the UI object
-            Vector3 screenPos = RectTransformUtility.WorldToScreenPoint(null, uiObject.position);
-
-            // Set the z distance from the camera
-            screenPos.z = zDistance;
-
-            // Convert the screen position to world position
-            Vector3 worldPos = cameraToUse.ScreenToWorldPoint(screenPos);
-
-            // Update the object's position with offset
-            transform.position = worldPos + offset;
-        }
-    }
-
-    // Optional debug line to visualize the tracking position
     private void OnDrawGizmos()
     {
-        if (uiObject != null && cameraToUse != null)
-        {
-            Vector3 screenPos = RectTransformUtility.WorldToScreenPoint(null, uiObject.position);
-            screenPos.z = zDistance;
-            Vector3 worldPos = cameraToUse.ScreenToWorldPoint(screenPos) + offset;
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(worldPos, 0.1f);  // Draw a red sphere at the adjusted world position
-        }
+        if (targetObject == null) return;
+
+        Gizmos.color = Color.red;
+        Vector3 targetPosWithOffset = targetObject.position + offset;
+        targetPosWithOffset.z = 0;
+        Gizmos.DrawSphere(targetPosWithOffset, 0.1f);
+        Gizmos.DrawLine(targetObject.position, targetPosWithOffset);
     }
 }

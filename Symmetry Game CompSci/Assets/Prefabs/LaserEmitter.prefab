@@ -103,12 +103,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 10
   maxDistance: 100
+  detectionRadius: 0.5
+  targetObject: {fileID: 0}
   mapGroundLayer:
     serializedVersion: 2
     m_Bits: 256
-  playerDummyLayer:
-    serializedVersion: 2
-    m_Bits: 512
   mapMirrorLayer:
     serializedVersion: 2
     m_Bits: 1024

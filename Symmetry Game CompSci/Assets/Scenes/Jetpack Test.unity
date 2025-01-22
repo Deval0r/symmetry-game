@@ -472,6 +472,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6594750973965443550, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
   m_PrefabInstance: {fileID: 1200501142}
   m_PrefabAsset: {fileID: 0}
+--- !u!61 &57017650 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1338317237522416397, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
+  m_PrefabInstance: {fileID: 1200501142}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &62536648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2972,6 +2977,142 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1350750621}
   m_SourcePrefab: {fileID: 100100000, guid: 44f029b43f45e4d69b3b56b8657dd668, type: 3}
+--- !u!1 &362608905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 362608906}
+  - component: {fileID: 362608908}
+  - component: {fileID: 362608907}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &362608906
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362608905}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 461074784}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &362608907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362608905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 52.28
+  m_fontSizeBase: 52.28
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &362608908
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362608905}
+  m_CullTransparentMesh: 1
 --- !u!1 &365028204
 GameObject:
   m_ObjectHideFlags: 0
@@ -4360,6 +4501,172 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screenPosition: {x: 0.605, y: 0.253}
   cameraToUse: {fileID: 0}
+--- !u!1 &461074783
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 461074784}
+  - component: {fileID: 461074789}
+  - component: {fileID: 461074788}
+  - component: {fileID: 461074787}
+  - component: {fileID: 461074786}
+  - component: {fileID: 461074785}
+  m_Layer: 5
+  m_Name: Hacker Button(Open Door) (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &461074784
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461074783}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 362608906}
+  m_Father: {fileID: 1712545529}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1918.9, y: -567.19006}
+  m_SizeDelta: {x: 22.6649, y: 34.689}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &461074785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461074783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489d1f6b3d217bd49833d65bc1a7ece7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minimapCenter: {fileID: 1018981024}
+  realObject: {fileID: 1966878487}
+  minimapScaleFactor: 0.05
+--- !u!114 &461074786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461074783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 0.8050314, g: 0.15948726, b: 0.15948726, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 461074788}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1966878490}
+        m_TargetAssemblyTypeName: DoorMovement, Assembly-CSharp
+        m_MethodName: ToggleDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &461074787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461074783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ae0201deb221746a76d47c0d25c311, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Door: {fileID: 1966878482}
+  speed: 10
+  movementAmount: {x: 0, y: 5, z: 0}
+  boxCollider: {fileID: 0}
+--- !u!114 &461074788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461074783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.554717, g: 0.032445684, b: 0.032445684, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &461074789
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461074783}
+  m_CullTransparentMesh: 1
 --- !u!1001 &464515151
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8625,6 +8932,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6594750973965443550, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
   m_PrefabInstance: {fileID: 1985442636}
   m_PrefabAsset: {fileID: 0}
+--- !u!61 &872928287 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1338317237522416397, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
+  m_PrefabInstance: {fileID: 1985442636}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &874071091 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7601608614303938833, guid: 44f029b43f45e4d69b3b56b8657dd668, type: 3}
@@ -9881,6 +10193,7 @@ MonoBehaviour:
   Door: {fileID: 1966878482}
   speed: 5
   movementAmount: {x: 0, y: 5, z: 0}
+  boxCollider: {fileID: 0}
 --- !u!1001 &978700335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10316,7 +10629,7 @@ Transform:
   m_GameObject: {fileID: 1018981023}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1649.48, y: 412, z: 0}
+  m_LocalPosition: {x: 1649.48, y: 800, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12128,6 +12441,10 @@ PrefabInstance:
       propertyPath: Door
       value: 
       objectReference: {fileID: 57017648}
+    - target: {fileID: 7427078076950631620, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
+      propertyPath: boxCollider
+      value: 
+      objectReference: {fileID: 57017650}
     - target: {fileID: 8717438258578934162, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
       propertyPath: m_Name
       value: Door (1)
@@ -13641,6 +13958,14 @@ PrefabInstance:
       propertyPath: Door
       value: 
       objectReference: {fileID: 1966878482}
+    - target: {fileID: 7427078076950631620, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427078076950631620, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
+      propertyPath: boxCollider
+      value: 
+      objectReference: {fileID: 1966878491}
     - target: {fileID: 8717438258578934162, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
       propertyPath: m_Name
       value: Door
@@ -17121,6 +17446,7 @@ RectTransform:
   - {fileID: 333549220}
   - {fileID: 955473951}
   - {fileID: 1875931815}
+  - {fileID: 461074784}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -18691,7 +19017,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7427078076950631620, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
+      - m_Target: {fileID: 1966878490}
         m_TargetAssemblyTypeName: DoorMovement, Assembly-CSharp
         m_MethodName: ToggleDoor
         m_Mode: 1
@@ -18718,6 +19044,7 @@ MonoBehaviour:
   Door: {fileID: 1966878482}
   speed: 10
   movementAmount: {x: 0, y: 5, z: 0}
+  boxCollider: {fileID: 0}
 --- !u!114 &1875931819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19329,6 +19656,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ae0201deb221746a76d47c0d25c311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &1966878491 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1338317237522416397, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
+  m_PrefabInstance: {fileID: 1359421436}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1970462639
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19681,6 +20013,10 @@ PrefabInstance:
       propertyPath: Door
       value: 
       objectReference: {fileID: 872928285}
+    - target: {fileID: 7427078076950631620, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
+      propertyPath: boxCollider
+      value: 
+      objectReference: {fileID: 872928287}
     - target: {fileID: 8717438258578934162, guid: 0ee1841bbff3b4447a77989927341013, type: 3}
       propertyPath: m_Name
       value: Door (2)

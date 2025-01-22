@@ -9,6 +9,7 @@ public class DoorMovement : MonoBehaviour
     private Vector3 targetPosition;
     private bool isMoving = false;
     private bool isOpen = false;
+    public BoxCollider2D boxCollider;
 
     void Start()
     {
@@ -44,6 +45,7 @@ public class DoorMovement : MonoBehaviour
         if (!isMoving)
         {
             isMoving = true;
+            boxCollider.enabled = false;
             Debug.Log("ToggleDoor called. Starting to move.");
         }
     }

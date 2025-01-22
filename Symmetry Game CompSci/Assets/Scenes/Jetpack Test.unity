@@ -8763,7 +8763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d37c3ecde28741d58d2909a0d42b5f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenPosition: {x: 0.71, y: 0.5}
+  screenPosition: {x: 0.71, y: 0.4}
   cameraToUse: {fileID: 520921143}
 --- !u!1 &886559505 stripped
 GameObject:

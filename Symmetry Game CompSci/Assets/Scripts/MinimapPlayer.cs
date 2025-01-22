@@ -23,7 +23,7 @@ public class MinimapPlayer : MonoBehaviour
         transform.position = newPosition;
             
         // Debug log positions
-        Debug.Log($"Target: {targetObject.position}, Current: {transform.position}, Offset: {offset}");
+       // Debug.Log($"Target: {targetObject.position}, Current: {transform.position}, Offset: {offset}");
     }
 
     private void OnDrawGizmos()

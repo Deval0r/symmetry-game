@@ -33,6 +33,10 @@ public class DoorMovement : MonoBehaviour
                 Debug.Log("Door reached the target position. Stopping movement.");
             }
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ToggleDoor();
+        }
     }
 
     public void ToggleDoor()

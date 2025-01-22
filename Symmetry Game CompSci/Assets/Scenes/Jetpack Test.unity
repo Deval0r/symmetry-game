@@ -10415,8 +10415,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   realPlayer: {fileID: 1588060592}
-  minimapScaleFactor: 3
-  minimapOffset: {x: 2105, y: 1115, z: 0}
+  minimapScaleFactor: 4.2
+  minimapOffset: {x: 2119, y: 1115, z: 0}
 --- !u!114 &985591226
 MonoBehaviour:
   m_ObjectHideFlags: 0

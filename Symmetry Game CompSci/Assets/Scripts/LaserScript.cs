@@ -19,6 +19,7 @@ public class LaserScript : MonoBehaviour
         lineRenderer.positionCount = 2;
         lineRenderer.startWidth = 0.68f;
         lineRenderer.endWidth = 0.68f;
+        lineRenderer.sortingOrder = 5;
 
         // Set the width curve to ensure the laser has a consistent width
         AnimationCurve widthCurve = new AnimationCurve();
